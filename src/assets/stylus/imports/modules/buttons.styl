@@ -1,0 +1,41 @@
+.btn
+  display: inline-block
+  padding: 0
+  background: none
+  appearance: none
+  outline: none
+
+  &--add,
+  &--close
+    position: relative
+    width: 42px
+    height: @width
+    border: 2px solid white
+    border-radius: 50%
+    transition: transform .2s ease
+
+    &:hover
+      transform: scale(1.2)
+
+    &::before,
+    &::after
+      content: ''
+      display: block
+      position: absolute
+      top: 50%
+      left: 50%
+      width: 75%
+      height: 2px
+      background: white
+
+    &::before
+      transform: translate(-50%, -50%)
+
+    &::after
+      transform: translate(-50%, -50%) rotate(90deg)
+
+  &--close
+    transform: rotate(315deg)
+
+
+

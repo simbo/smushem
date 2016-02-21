@@ -1,0 +1,50 @@
+.app
+
+  &_title
+    margin-left: $grid.gutter-width
+    font-weight: 900
+    font-size: ($menu.item-size * .65)
+    line-height: $menu.item-size
+
+  &_toggle-info
+    size($menu.item-size)
+    position: absolute
+    top: 0
+    right: ($grid.gutter-width - ($menu.item-size - $menu.item-size * .65) / 2)
+    color: $colors.text
+    text-align: center
+    opacity: .45
+    transition: opacity .4s
+
+    &:hover
+      opacity: 1
+
+    &::before,
+    &::after
+      @extend $icon
+      position: absolute
+      top: 0
+      left: 0
+      font-size: ($menu.item-size * .65)
+      line-height: $menu.item-size
+      transition: opacity .4s
+
+    &::before
+      @extend $icon-menu
+      opacity: 1
+
+      .info-visible &
+        opacity: 0
+
+    &::after
+      @extend $icon-cross
+      opacity: 0
+
+      .info-visible &
+        opacity: 1
+
+  &_info
+    height: 0
+
+    .info-visible
+      height: auto

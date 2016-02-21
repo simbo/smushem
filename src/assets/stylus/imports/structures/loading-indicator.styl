@@ -1,0 +1,22 @@
+.loading-indicator
+  size($menu.item-size)
+  position: absolute
+  top: 0
+  left: 50%
+  background: url('/assets/img/spinner.svg') no-repeat center center
+  background-size: 65% 65%
+  opacity: 0
+  transform: translateX(-50%)
+  transition: opacity .4s
+
+  &::before
+    content: attr(data-requests)
+    position: absolute
+    top: 50%
+    left: @top
+    color: rgba(255, 255, 255, .45)
+    font-size: .85em
+    transform: translate(-50%, -50%)
+
+  .loading &
+    opacity: 1

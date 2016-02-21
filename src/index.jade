@@ -1,0 +1,43 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title smush'em – Image optimization using resmush.it
+    link(rel="stylesheet", href="/assets/css/main.css")
+    link(rel="stylesheet", href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,900")
+  body.app
+    h1.app_title smush'em
+    //- a#toggle-info.app_toggle-info(href="#info")
+    //- #info.app_info
+    script#template_item(type="text/x-template")
+      .item(id="item-%id%")
+        a.item_download(href="%src%" download="%name%")
+        a.item_remove(href="#item-%id%")
+        .item-info
+          .item-info_name %name%
+          .item-info_percent %percent%
+          .item-info_format %format%
+          time.item-info_expires(datetime="%expires_iso%") %expires%
+          time.item-info_created(datetime="%created_iso%") %created%
+        figure.item-dest
+          .item-dest_thumb(style="background-image:url(%dest%)")
+          img.item-dest_img(src="%dest%" alt="%name%")
+          figcaption.item-dest-caption
+            .item-dest-caption_url %dest%
+            .item-dest-caption_size %dest_size%
+        figure.item-src
+          .item-src_thumb(style="background-image:url(%src%)")
+          img.item-src_img(src="%src%" alt="%name%")
+          figcaption.item-src-caption
+            .item-src-caption_url %src%
+            .item-src-caption_size %src_size%
+    script#template_uploading(type="text/x-template")
+      .item.item--uploading(id="item-uploading-%id%")
+        .item-info
+          .item-info_name %name%
+    script#template_failed(type="text/x-template")
+      .item.item--failed(id="item-uploading-%id%")
+        .item-info
+          .item-info_message %message%
+          .item-info_name %name%
+    script(src="/assets/js/main.js")

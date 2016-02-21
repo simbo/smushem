@@ -1,0 +1,134 @@
+$item-collection = {
+  item-background: #111,
+  item-info: {
+    padding: 15px
+  },
+  z-index: {
+    base: 1,
+    info: 2
+    download: 3,
+    remove: 4
+  }
+}
+
+.item-collection
+  lost-utility: clearfix
+  margin: $grid.gutter-width $grid.gutter-width 0
+
+.item
+  aspect-ratio(1, 1)
+  lost-column: 12/12 1 $grid.gutter-width
+  margin-bottom: $grid.gutter-width
+  border-radius: 3px
+  background-color: $item-collection.item-background
+  @media (min-width: 500px)
+    lost-column: 6/12 2 $grid.gutter-width
+  @media (min-width: 750px)
+    lost-column: 4/12 3 $grid.gutter-width
+  @media (min-width: 1000px)
+    lost-column: 3/12 4 $grid.gutter-width
+  @media (min-width: 1500px)
+    lost-column: 2/12 6 $grid.gutter-width
+
+  &-src,
+  &-dest-caption,
+  &-info_format,
+  &-info_expires
+    display: none
+
+  &_download,
+  &-dest,
+  &-dest::after
+  &-info
+    @extend $absolute-stretched
+
+  &_download,
+  &_remove,
+  &-dest::after,
+  &-info
+    opacity: 0
+    transition: opacity .4s
+
+  &_download
+    z-index: $item-collection.z-index.download
+
+  &_remove
+    position: absolute
+    top: 0
+    right: 0
+    z-index: $item-collection.z-index.remove
+    padding: $item-collection.item-info.padding
+    color: $colors.text
+
+    &::before
+      @extend $icon, $icon-cross
+      size(16px)
+
+  &-dest
+    z-index: $item-collection.z-index.base
+
+    &::after
+      content: ''
+      background-color: rgba(0, 0, 0, .5)
+
+    &_img
+      position: absolute
+      top: 50%
+      left: 50%
+      max-width: 100%
+      max-height: 100%
+      transform: translate(-50%, -50%)
+
+  &-info
+    size(s('calc(100% - %s)', ($item-collection.item-info.padding * 2)))
+    z-index: $item-collection.z-index.info
+    margin: $item-collection.item-info.padding
+    font-size: $font-size.small
+    line-height: $line-height.small
+
+    &_name
+      @extend $ellipsis
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      text-align: center
+      opacity: .5
+
+    &_created
+      opacity: .5
+
+    &_percent
+      @extend $ellipsis
+      position: absolute
+      top: 50%
+      left: 0
+      width: 100%
+      text-align: center
+      font-weight: 600
+      font-size: $font-size.large
+      transform: translateY(-50%)
+
+      &::before
+        @extend $icon, $icon-download
+        display: block
+        margin: 0 auto .25em
+        font-size: 2.5em
+
+      &::after
+        content: '% smushed'
+        width: 100%
+
+  &:hover
+
+      .item_download,
+      .item-dest::after,
+      .item-info
+        opacity: 1
+
+      .item_remove
+        opacity: .5
+
+        &:hover
+          opacity: 1
+
